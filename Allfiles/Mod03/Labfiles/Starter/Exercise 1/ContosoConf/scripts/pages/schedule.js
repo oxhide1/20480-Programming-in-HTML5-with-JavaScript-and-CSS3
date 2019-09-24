@@ -83,12 +83,15 @@
 
 
 // TODO: Task 2 - Get the "schedule" list element from the document
-// const list = ... ;
+const list = document.querySelector("list[id=schedule]");
 
 function createSessionElement(session) {
     // TODO: Task 3 - Create a <li> element for the session.
     //       Add the session title as the <li> text content
     //       Return the <li> element
+    const li = document.createElement("li");
+    li.textContent = session.title
+    return li;
 };
 
 function clearList() {
@@ -102,7 +105,12 @@ function displaySchedule() {
     
     // TODO: Task 4 - Loop through the schedule array
     //       Create session elements
-    //       Append the elements to the list   
+    //       Append the elements to the list
+    let i;
+    for (i = 0; i < list.length; i++) {
+        const li = createSessionElement(schedule[i]);
+        list.appendChild(li);
+    }
 }
 
 displaySchedule();
