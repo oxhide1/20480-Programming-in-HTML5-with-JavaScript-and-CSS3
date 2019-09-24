@@ -90,7 +90,7 @@ function createSessionElement(session) {
     //       Add the session title as the <li> text content
     //       Return the <li> element
     const li = document.createElement("li");
-    li.textContent = session.title
+    li.textContent = session.title;
     return li;
 };
 
