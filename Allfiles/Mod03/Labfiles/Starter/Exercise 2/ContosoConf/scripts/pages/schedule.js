@@ -87,6 +87,10 @@ const list = document.getElementById("schedule");
 let track1Checkbox = document.getElementById("show-track-1");
 let track2Checkbox = document.getElementById("show-track-2");
 
+let trackList = [1, 2];
+track1Checkbox.trackId = 1;     //Assign readable track IDs
+track2Checkbox.trackId = 2;
+
 function createSessionElement(session) {
     // TODO: Task 3 - Create a <li> element for the session.
     //       Add the session title as the <li> text content
@@ -94,7 +98,7 @@ function createSessionElement(session) {
     const li = document.createElement("li");
     li.textContent = session.title;
     return li;
-};
+}
 
 function clearList() {
     while (list.firstChild) {
@@ -108,11 +112,36 @@ function displaySchedule() {
     // TODO: Task 4 - Loop through the schedule array
     //       Create session elements
     //       Append the elements to the list   
-    for (let i = 0; i < schedule.length; i++) {
-        const li = createSessionElement(schedule[i]);
-        list.appendChild(li);
+    //for (let i = 0; i < schedule.length; i++) {
+    //    const li = createSessionElement(schedule[i]);
+    //    list.appendChild(li);
+    //}
+
+    //let trackList = new Array();    //Create array containing all tracks
+    //trackList.push(track1Checkbox.trackId * track1Checkbox.checked);
+    //trackList.push(track2Checkbox.trackId * track2Checkbox.checked);
+
+    //for (let s = 0; s < schedule.length; s++) {
+    //    let c = schedule[s].tracks.filter(function (n) {
+    //        return trackList.indexOf(n) !== -1;
+    //    });
+    //    if (c.length > 0) {
+    //        list.appendChild(createSessionElement(s));
+    //    }
+    //}
+    for (let s = 0; s < schedule.length; s++) {
+        for (let t = 0; t < trackList.length; t++) {
+            const tracks = schedule[s].tracks;
+            if (tracks.indexOf(trackList[t]) >= 0 && !(list.indexOf(schedule[s].title) >= 0)){
+                list.appendChild(createSessionElement(schedule[s]));
+            }
+        }
     }
 }
+
+
+track1Checkbox.addEventListener("click", this.displaySchedule(), false);
+track2Checkbox.addEventListener("click", this.displaySchedule(), false);
 
 displaySchedule();
 // SIG // Begin signature block
